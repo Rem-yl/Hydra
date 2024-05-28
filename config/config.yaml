@@ -1,0 +1,5 @@
+model:
+  name: alphafm
+  dim: 4
+  l1: 0.001
+  lr: 0.1
