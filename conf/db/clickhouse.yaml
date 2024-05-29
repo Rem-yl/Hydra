@@ -1,0 +1,4 @@
+driver: clickhouse
+user: root
+pass: clssql
+timeout: 30
