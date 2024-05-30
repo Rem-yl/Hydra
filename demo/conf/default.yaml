@@ -1,0 +1,6 @@
+defaults:
+  - dataset: linear 
+  - model: alphafm
+  - hydra: custom
+  - _self_  # 自己的参数会覆盖defaults
+
