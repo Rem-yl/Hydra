@@ -281,3 +281,61 @@ to_absolute_path('/foo')   : /foo
 ```
 
 工作目录的名称可以[here](https://hydra.cc/docs/configure_hydra/workdir/)自定义
+
+## Logging
+Hydra使用python的logging模块。
+在默认情况下, Hydra logs at the **INFO level** to both the console and a log file in the automatic working directory.
+
+可以通过设置`hydra.verbose=true`使Hydra记录`DEBUG`级别的log
+- hydra.verbose=true : Sets the log level of all loggers to DEBUG
+- hydra.verbose=NAME : Sets the log level of the logger NAME to DEBUG.Equivalent to import logging; logging.getLogger(NAME).setLevel(logging.DEBUG).
+- hydra.verbose=[NAME1,NAME2]: Sets the log level of the loggers NAME1 and NAME2 to DEBUG
+
+```shell
+$ python my_app.py hydra.verbose=true
+```
+
+You can disable the logging output by setting `hydra/job_logging` to disabled
+You can also set `hydra/job_logging=none` and `hydra/hydra_logging=none` if you do not want Hydra to configure the logging.
+
+Logging 可以在[here](https://hydra.cc/docs/configure_hydra/logging/)被自定义
+
+
+## Debugging
+可以使用`--cfg`通过不运行代码来获取config配置
+```shell 
+$ python 1.1_get_started.py --cfg job
+
+db:
+  driver: mysql
+  user: omry
+  pass: secret
+```
+
+The `--cfg` option takes one argument indicating which part of the config to print:
+
+- job: Your config
+- hydra: Hydra's config
+- all: The full config, which is a union of job and hydra.
+
+You can use --package or -p to display a subset of the configuration:
+```shell
+$ python 1.1_get_started.py --cfg job --package db
+# @package db
+driver: mysql
+user: omry
+pass: secret
+```
+
+The --info flag can provide information about various aspects of Hydra and your application:
+
+  --info all: Default behavior, prints everything
+  --info config: Prints information useful to understanding the config composition:
+  Config Search Path, Defaults Tree, Defaults List and the final config.
+  --info defaults: Prints the Final Defaults List
+  --info defaults-tree: Prints the Defaults Tree
+  --info plugins: Prints information about installed plugins
+
+
+## Tab completion
+不重要, 过了
