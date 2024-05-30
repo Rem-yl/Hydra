@@ -65,8 +65,26 @@ pok: 34
 从上面的代码示例来看, 使用`ConfigStore` API可以完全替代掉 `config.yaml`
 
 ## A hierarchical static configuration
+这节主要编写了详细的代码说明`ConfigStore` API可以完全替代掉 `config.yaml`
 ```shell
 $ python 3.4_static_config.py ui.title=ley
 
 Title=ley, size=1024x768 pixels
 ```
+
+## Config Group
+这节展示如何使用 `ConfigStore`接口实现 config group功能
+```shell
+$ python 3.5_config_groups.py +db=mysql
+db:
+  driver: mysql
+  host: localhost
+  port: 3306
+```
+
+> 注意: 这里db没有默认设置, 因此要添加db配置需要使用+db=sql前缀
+
+
+## Defaults List
+这一节介绍了如何在 `ConfigStore`api中实现default list的配置, 总体来说比较麻烦, 没有直接使用yaml文件配置那么好用&灵活。
+[Defaults List](https://hydra.cc/docs/tutorials/structured_config/defaults/)
